@@ -71,8 +71,8 @@ CREATE TABLE Bill (
   	Total DECIMAL(10,2), 
   	Patient_ID INT NOT NULL,  
   	PRIMARY KEY (Bill_ID), 
-  	FOREIGN KEY (Room_Cost) REFERENCES Room (Room_Cost),
-  	FOREIGN KEY (M_Cost) REFERENCES Medicine (M_Cost), 
+  	FOREIGN KEY (Room_ID) REFERENCES Room (Room_ID),
+  	FOREIGN KEY (Medicine_ID) REFERENCES Medicine (Medicine_ID), 
   	FOREIGN KEY (Patient_ID) REFERENCES Patient (Patient_ID),  
 );
 
