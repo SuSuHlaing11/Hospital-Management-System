@@ -108,7 +108,7 @@ SELECT Date_, SUM(M_Cost) AS Total_Medicine_Cost
 FROM Prescription
 JOIN Prescription_Medicine ON Prescription.Prescription_ID = Prescription_Medicine.Prescription_ID
 JOIN Medicine ON Prescription_Medicine.Medicine_ID = Medicine.Medicine_ID
-WHERE Date_ = '2024-03-05'
+WHERE Date_ = '2024-01-01'
 GROUP BY Date_;
 
 
@@ -118,7 +118,7 @@ SELECT Patient.Patient_ID, Patient.Patient_Name, Stay.Room_ID, Room.Room_Type
 FROM Patient
 JOIN Stay ON Patient.Patient_ID = Stay.Patient_ID
 JOIN Room ON Stay.Room_ID = Room.Room_ID
-WHERE Room.Room_Type = 'Standard';
+WHERE Room.Room_Type = 'Premium';
 
 (3) List all appointments scheduled for a specific doctor:
 --------------------------------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ SELECT Appointment.Appt_ID, Appointment.Date_, Appointment.Time_, Doctor.Doctor_
 FROM Appointment
 JOIN Doctor ON Appointment.Doctor_ID = Doctor.Doctor_ID
 JOIN Patient ON Appointment.Patient_ID = Patient.Patient_ID
-WHERE Doctor.Doctor_Name = 'Dr. Smith';
+WHERE Doctor.Doctor_Name = 'Dr Yuyu San';
 
 
 (4) Retrieve the prescriptions along with the corresponding medicines for a specific patient:
@@ -135,7 +135,7 @@ SELECT Prescription.Prescription_ID, Medicine.M_Name, Prescription.Dosage
 FROM Prescription
 JOIN Prescription_Medicine ON Prescription.Prescription_ID = Prescription_Medicine.Prescription_ID
 JOIN Medicine ON Prescription_Medicine.Medicine_ID = Medicine.Medicine_ID
-WHERE Prescription.Patient_ID = 501;
+WHERE Prescription.Patient_ID = 14;
 
 (6) Retrieve the list of doctors with the total number of appointments and patients they have:
 -----------------------------------------------------------------------------------------------------------
