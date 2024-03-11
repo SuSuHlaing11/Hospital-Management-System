@@ -45,7 +45,6 @@ CREATE TABLE Appointment (
 CREATE TABLE Medicine( 
   	Medicine_ID INT NOT NULL, 
   	M_Name VARCHAR(20) NOT NULL,
-  	M_Quantity INT NOT NULL, 
   	M_Cost Decimal(10,2), 
   	PRIMARY KEY (Medicine_ID) 
 );
