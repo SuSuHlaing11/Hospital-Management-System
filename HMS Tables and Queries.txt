@@ -136,7 +136,7 @@ JOIN Prescription_Medicine ON Prescription.Prescription_ID = Prescription_Medici
 JOIN Medicine ON Prescription_Medicine.Medicine_ID = Medicine.Medicine_ID
 WHERE Prescription.Patient_ID = 14;
 
-(6) Retrieve the list of doctors with the total number of appointments and patients they have:
+(5) Retrieve the list of doctors with the total number of appointments and patients they have:
 -----------------------------------------------------------------------------------------------------------
 SELECT
     Doctor.Doctor_ID,
@@ -147,3 +147,32 @@ FROM Doctor
 LEFT JOIN Appointment ON Doctor.Doctor_ID = Appointment.Doctor_ID
 LEFT JOIN Patient ON Appointment.Patient_ID = Patient.Patient_ID
 GROUP BY Doctor.Doctor_ID, Doctor.Doctor_Name;
+
+(6) Show Total cost for the patients:
+----------------------------------------------------------------------------------------------------------
+SELECT 
+    p.Patient_Name,
+    (s.Total_Stayed_Days * r.Room_Cost) AS Total_Room_Cost,
+    SUM(m.M_Cost * pr.Dosage) AS Total_Medicine_Cost,
+    b.Other_Charges,
+    (s.Total_Stayed_Days * r.Room_Cost) + SUM(m.M_Cost * pr.Dosage) + b.Other_Charges AS Total_Cost
+FROM 
+    patient p
+JOIN 
+    stay s ON p.Patient_ID = s.Patient_ID
+JOIN 
+    room r ON s.Room_ID = r.Room_ID
+JOIN 
+    bill b ON p.Patient_ID = b.Patient_ID
+LEFT JOIN 
+    prescription pr ON p.Patient_ID = pr.Patient_ID
+LEFT JOIN 
+    prescription_medicine pm ON pr.Prescription_ID = pm.Prescription_ID
+LEFT JOIN 
+    medicine m ON pm.Medicine_ID = m.Medicine_ID
+GROUP BY 
+    p.Patient_Name, 
+    s.Total_Stayed_Days, 
+    r.Room_Cost, 
+    b.Other_Charges;
+
