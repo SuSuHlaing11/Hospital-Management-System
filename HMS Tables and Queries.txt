@@ -148,7 +148,17 @@ LEFT JOIN Appointment ON Doctor.Doctor_ID = Appointment.Doctor_ID
 LEFT JOIN Patient ON Appointment.Patient_ID = Patient.Patient_ID
 GROUP BY Doctor.Doctor_ID, Doctor.Doctor_Name;
 
-(6) Show Total cost for the patients:
+(6) Total Medicine cost:
+------------------------------------------------------------------------------------------------------------
+SELECT p.Patient_Name, SUM(m.M_Cost) AS Total_Medicine_Cost
+FROM patient p
+JOIN prescription pr ON p.Patient_ID = pr.Patient_ID
+JOIN prescription_medicine pm ON pr.Prescription_ID = pm.Prescription_ID
+JOIN medicine m ON pm.Medicine_ID = m.Medicine_ID
+GROUP BY p.Patient_Name;
+
+
+(7) Show Total cost for the patients:
 ----------------------------------------------------------------------------------------------------------
 SELECT 
     p.Patient_Name,
