@@ -130,11 +130,12 @@ WHERE Doctor.Doctor_Name = 'Dr Yuyu San';
 
 (4) Retrieve the prescriptions along with the corresponding medicines for a specific patient:
 ---------------------------------------------------------------------------------------------------------
-SELECT Prescription.Prescription_ID, Medicine.M_Name, Prescription.Dosage
+SELECT Patient.Patient_Name, Medicine.M_Name, Prescription.Dosage
 FROM Prescription
 JOIN Prescription_Medicine ON Prescription.Prescription_ID = Prescription_Medicine.Prescription_ID
 JOIN Medicine ON Prescription_Medicine.Medicine_ID = Medicine.Medicine_ID
-WHERE Prescription.Patient_ID = 14;
+JOIN Patient ON Prescription.Patient_ID = Patient.Patient_ID
+WHERE Patient.Patient_Name = 'Thein Zaw';
 
 (5) Retrieve the list of doctors with the total number of appointments and patients they have:
 -----------------------------------------------------------------------------------------------------------
