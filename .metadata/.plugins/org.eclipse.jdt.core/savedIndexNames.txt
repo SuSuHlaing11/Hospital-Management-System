@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+D:\Say My Name\Eclipse\.metadata\.plugins\org.eclipse.jdt.core
-1707503604.index
-1772323448.index
-1865797976.index
